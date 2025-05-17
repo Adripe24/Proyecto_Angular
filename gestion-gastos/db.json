@@ -1,0 +1,18 @@
+{
+  "gastos": [
+    {
+      "id": "d10e",
+      "descripcion": "Movil",
+      "categoria": "Tecnologia",
+      "coste": 180,
+      "fecha": "2025-05-17"
+    },
+    {
+      "id": "4403",
+      "descripcion": "Coche",
+      "categoria": "Transporte",
+      "coste": 3000,
+      "fecha": "2025-05-17"
+    }
+  ]
+}

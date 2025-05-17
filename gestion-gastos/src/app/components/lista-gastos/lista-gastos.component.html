@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>Lista de Gastos</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th>Coste</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let gasto of gastos">
+        <td>{{ gasto.descripcion }}</td>
+        <td>{{ gasto.categoria }}</td>
+        <td>{{ gasto.coste | currency: 'EUR'  }}</td>
+        <td>{{ gasto.fecha | date: 'yyyy-MM-dd' }}</td>
+        <td class="d-flex justify-content-around">
+
+          <button (click)="eliminarGasto(gasto.id)" class="btn btn-danger btn-sm">Eliminar</button>
+
+          <button class="btn btn-primary btn-sm" (click)="editarGasto(gasto)">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="container mt-5" *ngIf="modoEdicion">
+  <h3>Editar Gasto</h3>
+  <form>
+
+    <div class="form-group mb-3">
+      <label for="descripcion">Descripción</label>
+      <input type="text" class="form-control" id="descripcion" [(ngModel)]="gastoSeleccionado.descripcion" name="descripcion">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="monto">Coste</label>
+      <input type="number" class="form-control" id="coste" [(ngModel)]="gastoSeleccionado.coste" name="coste">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="categoria">Categoría:</label>
+      <input type="text" class="form-control" id="categoria" [(ngModel)]="gastoSeleccionado.categoria" name="categoria">
+    </div>
+    
+    <button type="submit" class="btn btn-success" (click)="guardarGasto()">
+      Guardar
+    </button>
+
+    <button type="button" class="btn btn-secondary m-2" (click)="cancelarEdicion()">
+      Cancelar
+    </button>
+    
+  </form>
+</div>

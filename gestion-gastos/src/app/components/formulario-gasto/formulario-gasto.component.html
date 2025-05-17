@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Añadir Gasto</h2>
+  <form [formGroup]="gastoForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" class="form-control" formControlName="descripcion">
+      <div *ngIf="gastoForm.get('descripcion')?.invalid && (gastoForm.get('descripcion')?.dirty || gastoForm.get('descripcion')?.touched)" class="alert alert-danger">
+        Descripción es requerida.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="categoria">Categoría:</label>
+      <select id="categoria" class="form-control" formControlName="categoria">
+        <option value="" disabled>Selecciona una categoría</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+      </select>
+      <div *ngIf="gastoForm.get('categoria')?.invalid && (gastoForm.get('categoria')?.dirty || gastoForm.get('categoria')?.touched)" class="alert alert-danger">
+        Categoría es requerida.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="coste">Coste:</label>
+      <input type="number" id="coste" class="form-control" formControlName="coste">
+      <div *ngIf="gastoForm.get('coste')?.invalid && (gastoForm.get('coste')?.dirty || gastoForm.get('coste')?.touched)" class="alert alert-danger">
+        <div *ngIf="gastoForm.get('coste')?.errors?.['required']">Coste es requerido.</div>
+        <div *ngIf="gastoForm.get('coste')?.errors?.['min']">Coste debe ser mayor a 0.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" class="form-control" formControlName="fecha">
+      <div *ngIf="gastoForm.get('fecha')?.invalid && (gastoForm.get('fecha')?.dirty || gastoForm.get('fecha')?.touched)" class="alert alert-danger">
+        Fecha es requerida.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Gasto</button>
+  </form>
+</div>
