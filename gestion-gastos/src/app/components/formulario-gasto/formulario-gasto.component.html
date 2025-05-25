@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container p-3 mt-3 shadow-lg">
   <h2>Añadir Gasto</h2>
   <form [formGroup]="gastoForm" (ngSubmit)="onSubmit()">
 
-    <div class="form-group">
+    <div class="form-group shadow">
       <label for="descripcion">Descripción:</label>
       <input type="text" id="descripcion" class="form-control" formControlName="descripcion">
       <div *ngIf="gastoForm.get('descripcion')?.invalid && (gastoForm.get('descripcion')?.dirty || gastoForm.get('descripcion')?.touched)" class="alert alert-danger">
@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group shadow mt-2">
       <label for="categoria">Categoría:</label>
       <select id="categoria" class="form-control" formControlName="categoria">
         <option value="" disabled>Selecciona una categoría</option>
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group shadow mt-2">
       <label for="coste">Coste:</label>
       <input type="number" id="coste" class="form-control" formControlName="coste">
       <div *ngIf="gastoForm.get('coste')?.invalid && (gastoForm.get('coste')?.dirty || gastoForm.get('coste')?.touched)" class="alert alert-danger">
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group shadow mt-2">
       <label for="fecha">Fecha:</label>
       <input type="date" id="fecha" class="form-control" formControlName="fecha">
       <div *ngIf="gastoForm.get('fecha')?.invalid && (gastoForm.get('fecha')?.dirty || gastoForm.get('fecha')?.touched)" class="alert alert-danger">
@@ -38,6 +38,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Guardar Gasto</button>
+    <button type="submit" class="btn btn-primary mt-3 shadow-sm">Guardar Gasto</button>
+  
   </form>
 </div>

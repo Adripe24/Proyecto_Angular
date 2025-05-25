@@ -1,18 +1,18 @@
 {
   "gastos": [
     {
-      "id": "d10e",
-      "descripcion": "Movil",
-      "categoria": "Tecnologia",
-      "coste": 180,
-      "fecha": "2025-05-17"
-    },
-    {
-      "id": "4403",
+      "id": "3797",
       "descripcion": "Coche",
       "categoria": "Transporte",
-      "coste": 3000,
-      "fecha": "2025-05-17"
+      "coste": 500,
+      "fecha": "2025-05-25"
+    },
+    {
+      "id": "2e22",
+      "descripcion": "Vendas",
+      "categoria": "Salud",
+      "coste": 15,
+      "fecha": "2025-05-25"
     }
   ]
 }

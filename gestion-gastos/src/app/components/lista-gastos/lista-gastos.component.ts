@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ListaGastosComponent implements OnInit {
   gastos: IGasto[] = [];
+  gastosFiltrados: IGasto[] = [];
+  filtroTexto: string = '';
   gastoSeleccionado: IGasto = {
     id: 0,
     descripcion: '',
@@ -45,15 +47,13 @@ export class ListaGastosComponent implements OnInit {
     });
   }
   
-  editarGasto(gasto: IGasto): void { // Utiliza la interfaz Gasto
+  editarGasto(gasto: IGasto): void {
     this.gastoSeleccionado = { ...gasto };
     this.modoEdicion = true;
     console.log('Editar gasto:', gasto);
   }
 
-    // lista-gastos.component.ts
   guardarGasto(): void {
-    // Aquí puedes implementar la lógica para guardar los cambios en el servicio
     console.log('Guardar gasto:', this.gastoSeleccionado);
     this.gastoService.actualizarGasto(this.gastoSeleccionado).subscribe(() => {
       this.cargarGastos();
@@ -77,6 +77,27 @@ export class ListaGastosComponent implements OnInit {
       categoria: '',
       fecha: ''
     };
+  }
+
+  cambiaTextoFiltro(): void {
+    if (!this.filtroTexto) {
+      this.gastosFiltrados = [];
+    } else {
+      this.filtrarGastos();
+    }
+  }
+
+  filtrarGastos(): void {
+    if (!this.filtroTexto) {
+      this.gastosFiltrados = [...this.gastos];
+      return;
+    }
+    this.gastosFiltrados = this.gastos.filter(gasto =>
+      gasto.descripcion.toLowerCase().includes(this.filtroTexto.toLowerCase()) ||
+      gasto.categoria.toLowerCase().includes(this.filtroTexto.toLowerCase()) ||
+      gasto.coste.toString().includes(this.filtroTexto) ||
+      new Date(gasto.fecha).toLocaleDateString().includes(this.filtroTexto)
+    );
   }
 
 }

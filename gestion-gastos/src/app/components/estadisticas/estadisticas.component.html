@@ -1,39 +1,35 @@
-<div class="container">
+<div class="container p-3 mt-3 shadow-lg">
   <h2>Estadísticas de Gastos</h2>
 
-  <!-- Estadísticas básicas -->
-  <div class="card">
+  <div class="card mt-2 shadow">
     <div class="card-body">
       <h5 class="card-title">Total Gastado en el Mes</h5>
       <p class="card-text">{{ totalGastadoMes | currency: 'EUR' }}</p>
     </div>
   </div>
 
-  <div class="card">
+  <div class="card mt-2 shadow">
     <div class="card-body">
       <h5 class="card-title">Promedio de Gastos Diarios</h5>
       <p class="card-text">{{ promedioGastosDiarios | currency: 'EUR' }}</p>
     </div>
   </div>
 
-  <!-- Gastos más recientes -->
-  <div class="card">
+  <div class="card mt-2 shadow">
     <div class="card-body">
       <h5 class="card-title">Gastos Más Recientes</h5>
       <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let gasto of gastosRecientes">
-          {{ gasto.descripcion }} - {{ gasto.coste | currency: 'EUR' }}
+          {{ gasto.descripcion }} - {{ gasto.coste | currency: 'EUR' }}  - {{ gasto.fecha | date }}
         </li>
       </ul>
     </div>
   </div>
 
-  <!-- Gráfico de distribución de gastos por categoría -->
-  <div class="card">
-    <div class="card-body">
+  <div class="card mt-2 shadow">
+    <div class="card-grafico">
       <h5 class="card-title">Distribución de Gastos por Categoría</h5>
-      <!-- Aquí se insertará el gráfico de pastel o de barras -->
-      <canvas id="gastosPorCategoriaChart"></canvas>
+      <canvas #graficoGastosCategoria></canvas>
     </div>
   </div>
 </div>

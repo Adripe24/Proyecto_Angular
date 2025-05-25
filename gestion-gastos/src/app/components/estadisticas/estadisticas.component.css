@@ -1,0 +1,9 @@
+ .container {
+    background-color: #dfdfe5;
+}
+
+.card-grafico {
+   width: 400px;  
+   height: 400px;
+   margin: 0 auto;
+}

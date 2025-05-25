@@ -1,6 +1,36 @@
-<div class="container">
+<div class="container p-3 mt-3 shadow-lg">
   <h2>Lista de Gastos</h2>
-  <table class="table">
+
+ 
+  <input type="text" [(ngModel)]="filtroTexto" (input)="cambiaTextoFiltro()" placeholder="Buscar gastos...">
+  <ul>
+    <li *ngFor="let gasto of gastosFiltrados">
+      {{ gasto.descripcion }} - {{ gasto.coste | number:'1.2-2' }}€ - {{ gasto.categoria }} - {{ gasto.fecha }}
+      <button class="btn btn-primary btn-sm shadow-lg m-2" (click)="editarGasto(gasto)">Editar</button>
+      <button class="btn btn-danger btn-sm shadow-lg m-2" (click)="eliminarGasto(gasto.id)">Eliminar</button>
+    </li>
+  </ul>
+  <div *ngIf="modoEdicion">
+    <h3>Editar Gasto</h3>
+    <label>Descripción:
+      <input type="text" [(ngModel)]="gastoSeleccionado.descripcion">
+    </label>
+    <label>Coste:
+      <input type="number" [(ngModel)]="gastoSeleccionado.coste">
+    </label>
+    <label>Categoría:
+      <input type="text" [(ngModel)]="gastoSeleccionado.categoria">
+    </label>
+    <label>Fecha:
+      <input type="date" [(ngModel)]="gastoSeleccionado.fecha">
+    </label>
+    <button class="btn btn-success m-2" (click)="guardarGasto()">Guardar</button>
+    <button class="btn btn-secondary m-2" (click)="cancelarEdicion()">Cancelar</button>
+  </div>
+
+
+
+  <table class="table shadow">
     <thead>
       <tr>
         <th>Descripción</th>
@@ -18,9 +48,9 @@
         <td>{{ gasto.fecha | date: 'yyyy-MM-dd' }}</td>
         <td class="d-flex justify-content-around">
 
-          <button (click)="eliminarGasto(gasto.id)" class="btn btn-danger btn-sm">Eliminar</button>
+          <button (click)="eliminarGasto(gasto.id)" class="btn btn-danger btn-sm shadow-lg">Eliminar</button>
 
-          <button class="btn btn-primary btn-sm" (click)="editarGasto(gasto)">Editar</button>
+          <button class="btn btn-primary btn-sm shadow-lg" (click)="editarGasto(gasto)">Editar</button>
         </td>
       </tr>
     </tbody>
@@ -28,8 +58,8 @@
 </div>
 
 
-<div class="container mt-5" *ngIf="modoEdicion">
-  <h3>Editar Gasto</h3>
+<div class="container mt-5 shadow-lg" *ngIf="modoEdicion">
+  <h3 class="pt-3">Editar Gasto</h3>
   <form>
 
     <div class="form-group mb-3">
